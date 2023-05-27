@@ -7,9 +7,17 @@ import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-//Screens
+//RegisterLocal
 import RegistroLocal from "./RegisterLocal";
+//Screens
+//import JoinBusiness from "./JoinBusiness";
 import LoginScreen from "../utils/LoginScreen";
+//import JoinBusiness2 from "./JoinBusiness2";
+//import JoinBusiness3 from "./JoinBusiness3";
+//import JoinPickImage from "./JoinPickImage";
+import LoadImage from "./LoadImage";
+import LoadProduct from "./LoadProduct";
+import MainPageBusiness from "./MainPageBusiness";
 import TabViewBusiness from "./TabViewBusiness";
 //Screens User
 import HomeScreen from "../utils/HomeScreen";
@@ -23,6 +31,7 @@ const Stack = createNativeStackNavigator();
 function MyStackLogin() {
   return (
     <Stack.Navigator
+      //screenListeners={{ focus: (altura = 0) }}
       screenOptions={{
         headerShown: false,
       }}
@@ -30,14 +39,17 @@ function MyStackLogin() {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
+        //options={{ tabBarStyle: { display: "none" } }}
       />
       <Stack.Screen
         name="JoinBusiness"
         component={RegistroLocal}
+        //options={{ tabBarStyle: { display: "none" } }}
       />
       <Stack.Screen
         name="MainLocal"
         component={TabViewBusiness}
+        //options={{ tabBarStyle: { display: "none" } }}
       />
       <Stack.Screen
         name="MainUser"
@@ -48,6 +60,21 @@ function MyStackLogin() {
   );
 }
 
+/*function MyStackBusiness() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Join" component={JoinBusiness} />
+      <Stack.Screen name="Join2" component={JoinBusiness2} />
+      <Stack.Screen name="Join3" component={JoinPickImage} />
+      <Stack.Screen name="Join4" children={JoinBusiness3} />
+      <Stack.Screen name="Main" component={TabViewBusiness} />
+    </Stack.Navigator>
+  );
+}*/
 function MyTabsUser() {
   return (
     <Tab.Navigator
@@ -99,6 +126,9 @@ function MyTabsUser() {
 }
 
 export default function Navigation() {
+  const [uid, setUid] = React.useState("");
+  const [user, setUser] = React.useState("");
+  const [partner, setPartner] = React.useState("");
   const [listener, setListener] = React.useState(0);
   const [sesion, setSesio] = React.useState("");
 
@@ -107,6 +137,9 @@ export default function Navigation() {
       const dataUid = await AsyncStorage.getItem("@uid");
       const dataUser = await AsyncStorage.getItem("@user");
       const dataPartner = await AsyncStorage.getItem("@partner");
+      //setUser(dataUser);
+      //setPartner(dataPartner);
+      //setUid(dataUid);
       setSesio({ uid: dataUid, user: dataUser, partner: dataPartner });
     } catch (e) {
       console.log(e);
