@@ -17,6 +17,10 @@ import HomeScreen from "../utils/HomeScreen";
 import TabViewLocal from "../screensUser/TabViewLocal";
 import UserConfig from "../utils/UserConfig";
 import PantallaPrueba from "../screensUser/PantallaPrueba";
+//Local Screens
+import LocalPreview from "../screensUser/LocalPreview";
+import LocalGalery from "../screensUser/LocalGalery";
+import LocalLocalization from "../screensUser/LocalLocalization";
 
 
 const Tab = createBottomTabNavigator();
@@ -50,6 +54,18 @@ function MyStackLogin() {
   );
 }
 function MyTabsUser() {
+
+  const getTabBarVisibility = (route) => {
+    const routeName = route.state
+      ? route.state.routes[route.state.index].name
+      : '';
+
+    if (routeName === 'Preview'|| routeName === 'Galery' || routeName === 'Ubicacion') {
+      return false;
+    }
+    return true;
+  };
+
   return (
     <Tab.Navigator
       initialRouteName="MainPage"
@@ -73,18 +89,12 @@ function MyTabsUser() {
     >
       <Tab.Screen
         name="MainPage"
-        component={HomeScreen}
-        options={{
+        component={StackLocales}
+        options={({route}) => ({
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={25} color={color} />
           ),
-          headerLeft: null,
-        }}
-      />
-      <Tab.Screen
-      name="Local"
-      component={TabViewLocal}
-      options={{ tabBarButton: () => null, tabBarStyle: { display: "none" } }}
+        })}
       />
       <Tab.Screen
         name="userConfig"
@@ -98,6 +108,17 @@ function MyTabsUser() {
     </Tab.Navigator>
   );
 }
+
+//options={{ tabBarButton: () => null, tabBarStyle: { display: "none" } }}
+
+const StackLocales = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Inicio" component={HomeScreen} options={{headerShown: false}}/>
+    <Stack.Screen name="Preview" component={LocalPreview} options={({route}) => ({title: route.params.item.name})}/>
+    <Stack.Screen name="Galería" component={LocalGalery}/>
+    <Stack.Screen name="Ubicación" component={LocalLocalization}/>
+  </Stack.Navigator>
+);
 
 export default function Navigation() {
   const [listener, setListener] = React.useState(0);

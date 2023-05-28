@@ -6,8 +6,9 @@ import {
   Dimensions,
   ScrollView,
   FlatList,
+  TouchableOpacity
 } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 //Components
 import Card from "../components/Card";
@@ -19,7 +20,9 @@ import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 const { width, height } = Dimensions.get("screen");
 
 const LocalPreview = () => {
+  const navigation = useNavigation();
   const route = useRoute();
+  const item = route.params.item;
   const localId = route.params.item.id;
 
   const [dataLocal, setDataLocal] = React.useState("");
@@ -57,6 +60,12 @@ const LocalPreview = () => {
     <ScrollView>
       <View style={styles.container}>
         <Card item={dataLocal} />
+        <TouchableOpacity style={styles.datosUsuario} onPress={() => navigation.navigate('Galería', {item})}>
+          <Text style={styles.textoDatos}>Galería</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.datosUsuario} onPress={() => navigation.navigate('Ubicación', {item})}>
+          <Text style={styles.textoDatos}>Ubicación</Text>
+        </TouchableOpacity>
         <View style={styles.datosUsuario}>
           <Text style={styles.textoDatos}>productos disponibles</Text>
         </View>
@@ -70,7 +79,7 @@ const LocalPreview = () => {
           />
         ) : (
           <>
-            <View style={{ padding: 16, alignItems: "center", marginTop: 100 }}>
+            <View style={{ padding: 16, alignItems: "center", marginTop: height *0.07 }}>
               <Ionicons name="pricetags" size={50} color={"#808080"} />
               <Text style={{ fontSize: 16, color: "#808080", padding: 8 }}>
                 Esta tienda aún no tiene productos a la venta.
@@ -78,6 +87,7 @@ const LocalPreview = () => {
             </View>
           </>
         )}
+        <View style={{width: width, height: 0.08 * height}}/>
       </View>
     </ScrollView>
   );

@@ -48,7 +48,7 @@ const LocalGalery = () => {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.datosUsuario}>
-          <Text style={styles.textoDatos}>Vista previa de tus productos.</Text>
+          <Text style={styles.textoDatos}>Vista previa de fotografías del local.</Text>
         </View>
         {imagenes ? (
           <View style={{ flex: 1, zIndex: 1 }}>
@@ -63,10 +63,11 @@ const LocalGalery = () => {
           <View style={{ padding: 16, alignItems: "center", marginTop: "75%" }}>
             <Ionicons name="images" size={50} color={"#808080"} />
             <Text style={{ fontSize: 16, color: "#808080", padding: 8 }}>
-              Parece que aún no tienes ningúna fotografía.
+              Parece que aún no hay ningúna fotografía.
             </Text>
           </View>
         )}
+        <View style={{width: width, height: 0.08 * height}}/>
       </View>
     </ScrollView>
   );

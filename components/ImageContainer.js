@@ -34,8 +34,9 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     imagen: {
-        width: 360,
+        width: 0.835 * width,
         height: 230,
+        margin: 8,
         borderRadius: 8,
     },
     description: {

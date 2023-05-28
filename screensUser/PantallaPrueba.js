@@ -9,4 +9,5 @@ const PantallaPrueba = () => {
     );
 };
 
+
 export default PantallaPrueba;

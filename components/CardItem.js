@@ -1,5 +1,7 @@
 import react from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
+
+const {width, height} = Dimensions.get('screen');
 
 const CardItem = ({item}) => {
   const {name, imageAsset, price } = item;
@@ -37,8 +39,8 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 0.35 * width,
+    height: 0.35 * width,
     marginTop: 16,
     marginLeft: 16,
     marginRight: 16,

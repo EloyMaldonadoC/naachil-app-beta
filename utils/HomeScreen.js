@@ -61,7 +61,7 @@ const HomeScreen = () => {
   };
 
   const CardEx = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate("Local", { item })}>
+    <TouchableOpacity onPress={() => navigation.navigate("Preview", { item })}>
       <Card item={item} />
     </TouchableOpacity>
   );
@@ -76,14 +76,14 @@ const HomeScreen = () => {
       <View style={styles.container}>
         {locales ? (
           <>
-            <View style={{ height: 20 }} />
+            <View style={{ height: height * 0.03 }} />
             <FlatList
               data={locales}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => <CardEx item={item} />}
               scrollEnabled={false}
             />
-            <View style={{ height: 100 }} />
+            <View style={{ height: height * 0.08 }} />
           </>
         ) : (
           <>

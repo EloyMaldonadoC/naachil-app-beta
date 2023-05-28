@@ -1,6 +1,8 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+
+const { width, height } = Dimensions.get('screen');
 
 const Card = ({item}) => {
 
@@ -40,6 +42,8 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginTop: 8,
     marginBottom: 8,
+    marginLeft: 8,
+    marginRight: 8,
     backgroundColor: "#FFFFFF",
   },
   textHeader: {
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   image: {
-    width: 350,
+    width: 0.835 * width,
     height: 160,
     marginTop: 16,
     marginLeft: 16,
